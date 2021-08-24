@@ -1,9 +1,11 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {HomeScreen} from '../../screens/HomeScreen';
 import {FavoriteScreen} from '../../screens/FavoriteScreen';
 import {CartScreen} from '../../screens/CartScreen';
+import {RootParamterScreensList} from './interface';
+import {DetailsIngredientsScreen} from '../../screens/DetailsingredientScreen';
 
 const Main = createStackNavigator();
 
@@ -14,9 +16,34 @@ export const Route = () => {
         screenOptions={{
           headerTitleAlign: 'center',
         }}>
-        <Main.Screen name="Home" component={HomeScreen} />
-        <Main.Screen name="Favorite" component={FavoriteScreen} />
-        <Main.Screen name="Cart" component={CartScreen} />
+        <Main.Screen
+          name={RootParamterScreensList.home}
+          component={HomeScreen}
+          options={{
+            ...TransitionPresets.SlideFromRightIOS,
+          }}
+        />
+        <Main.Screen
+          name={RootParamterScreensList.favorite}
+          component={FavoriteScreen}
+          options={{
+            ...TransitionPresets.SlideFromRightIOS,
+          }}
+        />
+        <Main.Screen
+          name={RootParamterScreensList.cart}
+          component={CartScreen}
+          options={{
+            ...TransitionPresets.SlideFromRightIOS,
+          }}
+        />
+        <Main.Screen
+          name={RootParamterScreensList.ingredientDetails}
+          component={DetailsIngredientsScreen}
+          options={{
+            ...TransitionPresets.SlideFromRightIOS,
+          }}
+        />
       </Main.Navigator>
     </NavigationContainer>
   );

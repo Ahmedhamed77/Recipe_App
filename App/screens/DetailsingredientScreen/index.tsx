@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-export const index = () => {
+export const DetailsIngredientsScreen = () => {
   return (
     <View>
       <Text>ingredients Details </Text>
