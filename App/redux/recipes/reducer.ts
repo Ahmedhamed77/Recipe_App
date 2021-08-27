@@ -1,6 +1,5 @@
 import {Reducer} from 'redux';
 import {RecipesAction, RecipesReducer} from './types';
-import {Recipe} from '../../api/types';
 
 export const initialState: RecipesReducer = {
   recipes: [],
@@ -16,6 +15,11 @@ export const Recipes: Reducer<RecipesReducer, RecipesAction> = (
       return {
         ...state,
         recipes: action.recipes,
+      };
+    case 'RECIPES_LOADING':
+      return {
+        ...state,
+        isLoading: action.status,
       };
 
     default:

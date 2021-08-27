@@ -1,3 +1,5 @@
 import {combineReducers} from 'redux';
-
-export const appReducers = combineReducers({});
+import {Recipes} from '../recipes/reducer';
+export const appReducers = combineReducers({
+  Recipes,
+});

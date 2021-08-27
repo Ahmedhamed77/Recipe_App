@@ -13,6 +13,7 @@ export const Route = () => {
   return (
     <NavigationContainer>
       <Main.Navigator
+        initialRouteName={RootParamterScreensList.home}
         screenOptions={{
           headerTitleAlign: 'center',
         }}>
