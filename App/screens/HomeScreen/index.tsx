@@ -16,8 +16,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
   const dispatch = useDispatch();
   const {recipes, isLoading} = useSelector((state: Store) => state.Recipes);
 
-  const onPressComponent = () => {
-    navigation.navigate(Pages.Root.ingredientDetails);
+  const onPressComponent = (uuid: string) => {
+    navigation.navigate(Pages.Root.ingredientDetails, {uuid});
   };
 
   useEffect(() => {

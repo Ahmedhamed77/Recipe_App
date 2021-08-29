@@ -7,3 +7,13 @@ export type Recipe = {
   instructions: string;
   difficulty: number;
 };
+
+export interface RecipeDetails extends Recipe {
+  similar: SimilarProps[];
+}
+
+export type SimilarProps = {
+  uuid: string;
+  name: string;
+  image: string;
+};

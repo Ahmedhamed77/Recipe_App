@@ -6,13 +6,15 @@ export enum RootParamterScreensList {
   favorite = 'Favorite',
   cart = 'Cart',
   ingredientDetails = 'IngredientDetails',
+  passwordScreen = 'PasswordScreen',
 }
 
 export type RootStackParamList = {
   [RootParamterScreensList.home]: undefined;
   [RootParamterScreensList.favorite]: undefined;
   [RootParamterScreensList.cart]: undefined;
-  [RootParamterScreensList.ingredientDetails]: undefined;
+  [RootParamterScreensList.ingredientDetails]: {uuid: string};
+  [RootParamterScreensList.passwordScreen]: undefined;
 };
 
 export type RootNavigationProp<P extends RootParamterScreensList> =

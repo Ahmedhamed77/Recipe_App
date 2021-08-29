@@ -1,7 +1,10 @@
+import {RecipeDetails} from './../../Api/types';
+import {errorHandler} from '../../Api/axios/errorHandler';
+import {getRecipes} from '../../Api/recipes/get';
+import {getRecipe} from './../../Api/recipes/getRecipeDetails';
+
 import {Recipe} from '../../api/types';
 import {AppThunk} from '../store/types';
-import {errorHandler} from './../../api/axios/errorHandler';
-import {getRecipes} from '../../api/recipes/get';
 
 export const receiveRecipes = (recipes: Recipe[]) =>
   <const>{
@@ -15,6 +18,12 @@ export const recipesLoading = (status: boolean) =>
     status,
   };
 
+export const detailsRecipe = (recipe: RecipeDetails) =>
+  <const>{
+    type: 'DETAILS_RECIPE',
+    recipe,
+  };
+
 export const fetchRecipes = (): AppThunk => async dispatch => {
   dispatch(recipesLoading(true));
   try {
@@ -24,3 +33,15 @@ export const fetchRecipes = (): AppThunk => async dispatch => {
     errorHandler(error);
   }
 };
+
+export const fetchDetailsRecipe =
+  (payload: string): AppThunk =>
+  async dispatch => {
+    dispatch(recipesLoading(true));
+    try {
+      const res = await getRecipe(payload);
+      dispatch(detailsRecipe(res.data.recipe)); // data.recipe from Api
+    } catch (error) {
+      errorHandler(error);
+    }
+  };

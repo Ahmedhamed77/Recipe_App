@@ -11,19 +11,25 @@ import {styles} from './style';
 interface HomeScreenViewProps {
   data: Recipe[];
   isLoading: boolean;
-  onPressComponent: () => void;
+  onPressComponent: (uuid: string) => void;
 }
 export const HomeScreenView: React.FC<HomeScreenViewProps> = ({
   data,
   isLoading,
   onPressComponent,
 }) => {
-  const renderItem = ({item}: {item: Recipe}) => (
-    <HomeScreenComponent {...item} onPress={onPressComponent} />
-  );
+  const renderItem = ({item}: {item: Recipe}) => {
+    return (
+      <HomeScreenComponent
+        key={item.uuid}
+        {...item}
+        onPress={onPressComponent}
+      />
+    );
+  };
 
   return (
-    <View style={{flex: 1, width: '100%'}}>
+    <View style={styles.container}>
       <FlatList
         contentContainerStyle={[styles.screenContainer, {marginBottom: 12}]}
         data={data}
@@ -38,7 +44,7 @@ export const HomeScreenView: React.FC<HomeScreenViewProps> = ({
         onEndReachedThreshold={0.7}
         refreshing={isLoading}
         renderItem={renderItem}
-        keyExtractor={item => `${item.uuid}${item.difficulty}`}
+        keyExtractor={item => `${item.uuid}${item.lastUpdated}`}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         ListEmptyComponent={

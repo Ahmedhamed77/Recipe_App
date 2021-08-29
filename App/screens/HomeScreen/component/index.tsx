@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {Text, View, Image} from 'react-native';
 import {styles} from './style';
@@ -15,25 +15,30 @@ export interface HomeScreenComponentProps {
   description: string;
   instructions: string;
   difficulty: number;
-  onPress: () => void;
+  onPress: (uuid: string) => void;
 }
 export const HomeScreenComponent: React.FC<HomeScreenComponentProps> = ({
+  uuid,
   name,
   description,
   lastUpdated,
   images,
   onPress,
 }) => {
-  console.log(images);
+  //getting only one image from the imagesArray
+  const imagesSlice = useMemo(() => images?.slice(0, 1), [images]);
+  const time = new Date(lastUpdated).toLocaleDateString('en-US');
   return (
-    <TouchableOpacity onPress={onPress} style={styles.componentContainer}>
+    <TouchableOpacity
+      onPress={() => onPress(uuid)}
+      style={styles.componentContainer}>
       <View style={styles.rightContent}>
         <Text style={styles.headerText}>{name}</Text>
         <Text style={styles.descriptionText}>{description}</Text>
-        <Text style={styles.dateText}>{lastUpdated}</Text>
+        <Text style={styles.dateText}>{time}</Text>
       </View>
       <View style={styles.leftContent}>
-        {images.map(url => {
+        {imagesSlice.map(url => {
           return (
             <Image
               style={styles.imageStyle}

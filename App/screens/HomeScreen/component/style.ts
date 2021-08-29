@@ -4,6 +4,7 @@ export const styles = StyleSheet.create({
   componentContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    flex: 1,
     paddingTop: 16,
     paddingHorizontal: 12,
   },
@@ -31,6 +32,6 @@ export const styles = StyleSheet.create({
   },
   imageStyle: {
     width: '100%',
-    height: 140,
+    height: '100%',
   },
 });
