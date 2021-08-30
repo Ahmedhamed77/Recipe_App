@@ -1,64 +1,69 @@
 import React, {useState} from 'react';
-import {Text, ScrollView, View, Image, Dimensions} from 'react-native';
+import {Text, ScrollView, View, Image, NativeScrollEvent} from 'react-native';
+import {styles} from './style';
 
-const {width} = Dimensions.get('window');
-const height = (width * 100) / 180;
-
-export const index = () => {
-  const [active, setActive] = useState(0);
-  const images = [
-    'https://images.pexels.com/photos/9166412/pexels-photo-9166412.jpeg?cs=srgb&dl=pexels-lisa-9166412.jpg&fm=jpg',
-    'https://images.pexels.com/photos/54283/pexels-photo-54283.jpeg?cs=srgb&dl=pexels-kaboompics-com-54283.jpg&fm=jpg',
-    'https://images.pexels.com/photos/9166412/pexels-photo-9166412.jpeg?cs=srgb&dl=pexels-lisa-9166412.jpg&fm=jpg',
-  ];
-  const changeActive = ({nativeEvent}) => {
+interface SliderProps {
+  images: string[];
+}
+export const Slider: React.FC<SliderProps> = ({images}) => {
+  const [activePic, setActivePic] = useState(0);
+  const changeActive = (nativeEvent: NativeScrollEvent) => {
     const slide = Math.ceil(
       nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width,
     );
-    if (slide !== active) {
-      //   setActive({active: slide});
+    if (slide !== activePic) {
+      setActivePic(slide);
     }
   };
   return (
     <View>
-      <ScrollView
-        pagingEnabled
-        horizontal
-        showsHorizontalScrollIndicator
-        onScroll={NativeEvent => changeActive(NativeEvent)}>
-        {images.map(image => {
-          return (
-            <View>
-              <Image
-                style={{width, height}}
-                source={{uri: image}}
-                resizeMode={'cover'}
-              />
-            </View>
-          );
-        })}
-      </ScrollView>
-      <View
-        style={{
-          flexDirection: 'row',
-          position: 'absolute',
-          bottom: 0,
-          alignSelf: 'center',
-        }}>
-        {images.map((e, index) => {
-          return (
-            <Text
-              key={e}
-              style={
-                index === active
-                  ? {color: 'white', margin: 3}
-                  : {color: 'red', margin: 3}
-              }>
-              ⬤
-            </Text>
-          );
-        })}
-      </View>
+      {images.length > 1 ? (
+        <>
+          <ScrollView
+            pagingEnabled
+            horizontal
+            showsHorizontalScrollIndicator
+            onScroll={({nativeEvent}) => changeActive(nativeEvent)}>
+            {images.map(image => {
+              return (
+                <View>
+                  <Image
+                    style={{}}
+                    source={{uri: image}}
+                    resizeMode={'cover'}
+                  />
+                </View>
+              );
+            })}
+          </ScrollView>
+          <View style={styles.imagesContainer}>
+            {images.map((e, index) => {
+              console.log('index', index);
+              return (
+                <Text
+                  style={
+                    activePic === index ? styles.activeDot : styles.notActiveDot
+                  }
+                  key={`${e}+${index}`}>
+                  ⬤
+                </Text>
+              );
+            })}
+          </View>
+        </>
+      ) : (
+        <>
+          {images.map(image => {
+            console.log('image', image);
+            return (
+              <View>
+                <Text>aaa</Text>
+                <Image style={{}} source={{uri: image}} resizeMode={'cover'} />
+              </View>
+            );
+          })}
+        </>
+      )}
     </View>
   );
 };
