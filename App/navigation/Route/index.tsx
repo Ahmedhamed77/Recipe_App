@@ -1,7 +1,6 @@
 import React from 'react';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {HomeScreen} from '../../screens/HomeScreen';
 import {FavoriteScreen} from '../../screens/FavoriteScreen';
 import {CartScreen} from '../../screens/CartScreen';
 import {RootParamterScreensList} from './interface';
