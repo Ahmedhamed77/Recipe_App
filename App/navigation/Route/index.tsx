@@ -7,6 +7,7 @@ import {CartScreen} from '../../screens/CartScreen';
 import {RootParamterScreensList} from './interface';
 import {DetailsIngredientsScreen} from '../../screens/DetailsingredientScreen';
 import {PasswordScreen} from '../../screens/PasswordScreen';
+import {HomeScreenTab} from '../Tabs';
 
 const Main = createStackNavigator();
 
@@ -20,8 +21,9 @@ export const Route = () => {
         }}>
         <Main.Screen
           name={RootParamterScreensList.home}
-          component={HomeScreen}
+          component={HomeScreenTab}
           options={{
+            headerShown: false,
             ...TransitionPresets.SlideFromRightIOS,
           }}
         />
