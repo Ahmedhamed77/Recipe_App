@@ -20,25 +20,15 @@ export const Searchbox: React.FC<SearchInputProps> = ({
 }) => {
   return (
     <View style={styles.searchBar}>
-      {onClear ? (
-        value.length > 0 && (
-          <Pressable onPress={onClear}>
-            {({pressed}) => (
-              <FontAwesome name={'close'} color={'#1A5CAA'} size={30} />
-            )}
-          </Pressable>
-        )
-      ) : (
-        <Pressable style={styles.searchInput} onPress={onSearch}>
-          <Feather name={'search'} size={30} color={'#000'} />
-        </Pressable>
-      )}
+      <Pressable style={styles.searchInput} onPress={onSearch}>
+        <Feather name={'search'} size={30} color={'#000'} />
+      </Pressable>
       <TextInput
-        style={{}}
+        style={{fontSize: 14, color: '#666'}}
         value={value}
         onChangeText={onTextChange}
         onSubmitEditing={onSearch}
-        placeholder={'Search'}
+        placeholder={'Search by name...'}
       />
     </View>
   );

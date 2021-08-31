@@ -4,6 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
+    backgroundColor: '#FFFF',
   },
   screenContainer: {
     paddingHorizontal: 8,

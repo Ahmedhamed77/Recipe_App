@@ -16,7 +16,7 @@ interface DetailsIngredientsScreenProps {
 }
 
 export const DetailsIngredientsScreen: React.FC<DetailsIngredientsScreenProps> =
-  ({navigation, route}) => {
+  ({route}) => {
     const {uuid} = route.params;
     const dispatch = useDispatch();
     const {recipe, isLoading} = useSelector((state: Store) => state.Recipes);

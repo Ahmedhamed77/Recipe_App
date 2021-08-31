@@ -1,5 +1,7 @@
 import React from 'react';
-import {View, Text, Image, ScrollView} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
+import FastImage from 'react-native-fast-image';
+
 import {styles} from './style';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -20,10 +22,8 @@ interface DetailsIngredientsScreenViewProps {
 }
 export const DetailsIngredientsScreenView: React.FC<DetailsIngredientsScreenViewProps> =
   ({
-    uuid,
     name,
     images,
-    lastUpdated,
     description,
     instructions,
     difficulty,
@@ -68,11 +68,11 @@ export const DetailsIngredientsScreenView: React.FC<DetailsIngredientsScreenView
             contentContainerStyle={styles.recommendedContainer}>
             {similar?.map((item, index) => {
               return (
-                <Image
+                <FastImage
                   key={index}
                   style={styles.recommendedPic}
                   source={{uri: item.image}}
-                  resizeMode={'cover'}
+                  resizeMode={FastImage.resizeMode.cover}
                 />
               );
             })}

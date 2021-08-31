@@ -1,10 +1,9 @@
 import {RecipeDetails} from './../../Api/types';
-import {errorHandler} from '../../Api/axios/errorHandler';
-import {getRecipes} from '../../Api/recipes/get';
-import {getRecipe} from './../../Api/recipes/getRecipeDetails';
-
 import {Recipe} from '../../api/types';
 import {AppThunk} from '../store/types';
+import {getRecipes} from '../../api/recipes/get';
+import {errorHandler} from '../../api/axios/errorHandler';
+import {getRecipe} from '../../api/recipes/getRecipeDetails';
 
 export const receiveRecipes = (recipes: Recipe[]) =>
   <const>{
