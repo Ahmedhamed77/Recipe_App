@@ -1,45 +1,59 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import FastImage from 'react-native-fast-image';
 
 import {styles} from './style';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {SimilarProps} from '../../../Api/types';
+import {RecipeDetails} from '../../../Api/types';
 import {Slider} from '../components/Slider';
+import {useDispatch} from 'react-redux';
+import {addFavorite, removeFavorite} from '../../../redux/favorites/action';
 
 interface DetailsIngredientsScreenViewProps {
-  uuid: string;
-  name: string;
-  images: string[];
-  lastUpdated: number;
-  description: string;
-  instructions: string;
-  difficulty: number;
-  similar: SimilarProps[];
+  recipe: RecipeDetails;
   isLoading: boolean;
   reviews: number[];
+  isFavorite: (recipe: RecipeDetails) => boolean;
 }
 export const DetailsIngredientsScreenView: React.FC<DetailsIngredientsScreenViewProps> =
-  ({
-    name,
-    images,
-    description,
-    instructions,
-    difficulty,
-    similar,
-    isLoading,
-    reviews,
-  }) => {
+  ({recipe, isLoading, isFavorite, reviews}) => {
+    const dispatch = useDispatch();
+    console.log(isLoading);
     return (
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.headerName}>{name}</Text>
-          <MaterialIcons name="favorite" size={30} style={styles.headerIcon} />
+          <Text style={styles.headerName}>{recipe.name}</Text>
+          <TouchableOpacity
+            onPress={() => {
+              isFavorite(recipe)
+                ? dispatch(removeFavorite(recipe))
+                : dispatch(addFavorite(recipe));
+            }}>
+            {isLoading ? (
+              <ActivityIndicator color={'#000'} />
+            ) : (
+              <MaterialIcons
+                name="favorite"
+                size={30}
+                style={
+                  isFavorite(recipe)
+                    ? styles.headerFavoriteIcon
+                    : styles.headerNotFavoriteIcon
+                }
+              />
+            )}
+          </TouchableOpacity>
         </View>
-        <Slider images={images} />
+        <Slider images={recipe.images} />
         <View style={styles.descriptionContainer}>
-          <Text style={styles.descriptionText}>{description}</Text>
+          <Text style={styles.descriptionText}>{recipe.description}</Text>
         </View>
         <View style={styles.difficultyContainer}>
           <Text style={styles.difficultyText}>Difficulty:</Text>
@@ -51,7 +65,9 @@ export const DetailsIngredientsScreenView: React.FC<DetailsIngredientsScreenView
                   size={25}
                   key={`${index}+1`}
                   style={
-                    difficulty > index ? {color: '#99B7B0'} : {color: '#2F2B2B'}
+                    recipe.difficulty > index
+                      ? {color: '#99B7B0'}
+                      : {color: '#2F2B2B'}
                   }
                 />
               );
@@ -59,14 +75,16 @@ export const DetailsIngredientsScreenView: React.FC<DetailsIngredientsScreenView
           </View>
           <View style={styles.instructionsContainer}>
             <Text style={styles.instructionText}>Instruction:</Text>
-            <Text style={styles.instructionDescription}>{instructions}</Text>
+            <Text style={styles.instructionDescription}>
+              {recipe.instructions}
+            </Text>
           </View>
-          <Text style={{paddingBottom: 10, fontSize: 20}}>Recommended:</Text>
+          <Text style={styles.recommendedText}>Recommended:</Text>
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.recommendedContainer}>
-            {similar?.map((item, index) => {
+            {recipe.similar?.map((item, index) => {
               return (
                 <FastImage
                   key={index}

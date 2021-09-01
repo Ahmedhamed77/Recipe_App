@@ -51,6 +51,7 @@ export const HomeScreenView: React.FC<HomeScreenViewProps> = ({
     );
   };
 
+  console.log(filterData, 'filterData');
   return (
     <FlatList
       keyboardShouldPersistTaps="always"
@@ -58,7 +59,7 @@ export const HomeScreenView: React.FC<HomeScreenViewProps> = ({
         styles.screenContainer,
         {marginBottom: 12, paddingHorizontal: 12},
       ]}
-      data={filterData && data}
+      data={filterData}
       ListHeaderComponent={() => {
         return (
           <View style={styles.headerContainer}>

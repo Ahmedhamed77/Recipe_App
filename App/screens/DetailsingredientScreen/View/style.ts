@@ -15,9 +15,14 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     letterSpacing: 1.5,
   },
-  headerIcon: {
+
+  headerFavoriteIcon: {
     alignSelf: 'center',
-    color: 'orange',
+    color: 'red',
+  },
+  headerNotFavoriteIcon: {
+    alignSelf: 'center',
+    color: '#D0D0D0',
   },
   descriptionContainer: {
     paddingBottom: 10,
@@ -53,6 +58,10 @@ export const styles = StyleSheet.create({
   },
   recommendedContainer: {
     marginBottom: 18,
+  },
+  recommendedText: {
+    paddingBottom: 10,
+    fontSize: 20,
   },
   recommendedPic: {
     width: 189,

@@ -17,6 +17,7 @@ export const HomeScreenTab = () => {
         name={RootParamterScreensList.home}
         component={HomeScreen}
         options={{
+          headerTitleAlign: 'center',
           tabBarIcon: ({color, size}) => (
             <MaterialIcons name="home" color={color} size={size} />
           ),
@@ -26,6 +27,7 @@ export const HomeScreenTab = () => {
         name={RootParamterScreensList.favorite}
         component={FavoriteScreen}
         options={{
+          headerTitleAlign: 'center',
           tabBarIcon: ({color, size}) => (
             <MaterialIcons name="favorite" color={color} size={size} />
           ),

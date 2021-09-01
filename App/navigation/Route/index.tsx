@@ -2,7 +2,6 @@ import React from 'react';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {FavoriteScreen} from '../../screens/FavoriteScreen';
-import {CartScreen} from '../../screens/CartScreen';
 import {RootParamterScreensList} from './interface';
 import {DetailsIngredientsScreen} from '../../screens/DetailsingredientScreen';
 import {PasswordScreen} from '../../screens/PasswordScreen';
@@ -29,13 +28,6 @@ export const Route = () => {
         <Main.Screen
           name={RootParamterScreensList.favorite}
           component={FavoriteScreen}
-          options={{
-            ...TransitionPresets.SlideFromRightIOS,
-          }}
-        />
-        <Main.Screen
-          name={RootParamterScreensList.cart}
-          component={CartScreen}
           options={{
             ...TransitionPresets.SlideFromRightIOS,
           }}

@@ -1,4 +1,3 @@
-import {detailsRecipe} from './action';
 import {Reducer} from 'redux';
 import {RecipesAction, RecipesReducer} from './types';
 

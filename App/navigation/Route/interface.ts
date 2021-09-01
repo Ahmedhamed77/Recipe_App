@@ -3,7 +3,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 
 export enum RootParamterScreensList {
   home = 'Home',
-  favorite = 'Favorite',
+  favorite = 'Favorites',
   cart = 'Cart',
   ingredientDetails = 'IngredientDetails',
   passwordScreen = 'PasswordScreen',
