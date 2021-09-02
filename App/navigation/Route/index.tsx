@@ -2,8 +2,8 @@ import React from 'react';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {FavoriteScreen} from '../../screens/FavoriteScreen';
-import {RootParamterScreensList} from './interface';
-import {DetailsIngredientsScreen} from '../../screens/DetailsingredientScreen';
+import {RootParameterScreensList} from './interface';
+import {DetailsIngredientsScreen} from '../../screens/DetailsIngredientsScreen';
 import {PasswordScreen} from '../../screens/PasswordScreen';
 import {HomeScreenTab} from '../Tabs';
 
@@ -13,12 +13,12 @@ export const Route = () => {
   return (
     <NavigationContainer>
       <Main.Navigator
-        initialRouteName={RootParamterScreensList.home}
+        initialRouteName={RootParameterScreensList.home}
         screenOptions={{
           headerTitleAlign: 'center',
         }}>
         <Main.Screen
-          name={RootParamterScreensList.home}
+          name={RootParameterScreensList.tabs}
           component={HomeScreenTab}
           options={{
             headerShown: false,
@@ -26,21 +26,21 @@ export const Route = () => {
           }}
         />
         <Main.Screen
-          name={RootParamterScreensList.favorite}
+          name={RootParameterScreensList.favorite}
           component={FavoriteScreen}
           options={{
             ...TransitionPresets.SlideFromRightIOS,
           }}
         />
         <Main.Screen
-          name={RootParamterScreensList.ingredientDetails}
+          name={RootParameterScreensList.ingredientDetails}
           component={DetailsIngredientsScreen}
           options={{
             ...TransitionPresets.SlideFromRightIOS,
           }}
         />
         <Main.Screen
-          name={RootParamterScreensList.passwordScreen}
+          name={RootParameterScreensList.passwordScreen}
           component={PasswordScreen}
           options={{
             ...TransitionPresets.SlideFromRightIOS,

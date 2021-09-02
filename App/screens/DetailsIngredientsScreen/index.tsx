@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RecipeDetails} from '../../Api/types';
 import {
   RootNavigationProp,
-  RootParamterScreensList,
+  RootParameterScreensList,
   RootRouteProp,
 } from '../../navigation/Route/interface';
 import {fetchDetailsRecipe} from '../../redux/recipes/action';
@@ -11,8 +11,8 @@ import {Store} from '../../redux/store/types';
 import {DetailsIngredientsScreenView} from './View';
 
 interface DetailsIngredientsScreenProps {
-  navigation: RootNavigationProp<RootParamterScreensList.ingredientDetails>;
-  route: RootRouteProp<RootParamterScreensList.ingredientDetails>;
+  navigation: RootNavigationProp<RootParameterScreensList.ingredientDetails>;
+  route: RootRouteProp<RootParameterScreensList.ingredientDetails>;
 }
 
 export const DetailsIngredientsScreen: React.FC<DetailsIngredientsScreenProps> =

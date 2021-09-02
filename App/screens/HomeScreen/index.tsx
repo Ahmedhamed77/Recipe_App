@@ -3,14 +3,14 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Pages} from '../../navigation/Pages';
 import {
   RootNavigationProp,
-  RootParamterScreensList,
+  RootParameterScreensList,
 } from '../../navigation/Route/interface';
 import {fetchRecipes} from '../../redux/recipes/action';
 import {Store} from '../../redux/store/types';
 import {HomeScreenView} from './View';
 
 interface HomeScreenProps {
-  navigation: RootNavigationProp<RootParamterScreensList.home>;
+  navigation: RootNavigationProp<RootParameterScreensList.home>;
 }
 export const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
   const dispatch = useDispatch();

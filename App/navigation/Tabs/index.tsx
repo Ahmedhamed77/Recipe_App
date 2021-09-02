@@ -1,9 +1,10 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {RootParamterScreensList, RootStackParamList} from '../Route/interface';
+import {RootParameterScreensList, RootStackParamList} from '../Route/interface';
 import {HomeScreen} from '../../screens/HomeScreen';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {FavoriteScreen} from '../../screens/FavoriteScreen';
+import {LiquidScreen} from '../../screens/LiquidScreen';
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
@@ -14,7 +15,7 @@ export const HomeScreenTab = () => {
         tabBarActiveTintColor: '#9381ff',
       }}>
       <Tab.Screen
-        name={RootParamterScreensList.home}
+        name={RootParameterScreensList.home}
         component={HomeScreen}
         options={{
           headerTitleAlign: 'center',
@@ -24,12 +25,22 @@ export const HomeScreenTab = () => {
         }}
       />
       <Tab.Screen
-        name={RootParamterScreensList.favorite}
+        name={RootParameterScreensList.favorite}
         component={FavoriteScreen}
         options={{
           headerTitleAlign: 'center',
           tabBarIcon: ({color, size}) => (
             <MaterialIcons name="favorite" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={RootParameterScreensList.LiquidScreen}
+        component={LiquidScreen}
+        options={{
+          headerTitleAlign: 'center',
+          tabBarIcon: ({color, size}) => (
+            <MaterialIcons name="change-history" color={color} size={size} />
           ),
         }}
       />

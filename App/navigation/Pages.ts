@@ -1,5 +1,5 @@
-import {RootParamterScreensList} from './Route/interface';
+import {RootParameterScreensList} from './Route/interface';
 
 export const Pages = {
-  Root: RootParamterScreensList,
+  Root: RootParameterScreensList,
 };
